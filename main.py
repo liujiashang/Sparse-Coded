@@ -340,8 +340,7 @@ else:
     result = csr_matrix((NR, NC), dtype=float)
 
     for cur in range(NoM):
-        result += np.dot(csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA), dtype=float),
-                         csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC), dtype=float))
+        result += np.dot(csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA), dtype=float), csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC), dtype=float))
 
     result = result.tocoo()
 
