@@ -344,7 +344,8 @@ else:
         tmp2 = coo_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC), dtype=float)
         tmp1 = tmp1.tocsr()
         tmp2 = tmp2.tocsr()
-        result = result + np.dot(tmp1, tmp2)
+        print (type(tmp1), type(tmp2))
+        # result = result + np.dot(tmp1, tmp2)
 
     result = result.tocoo()
 
