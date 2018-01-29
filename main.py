@@ -169,7 +169,7 @@ if comm.rank == 0:
 
     for i in range(Receive_length):
         Partial_Result[i] = csr_matrix((R_Partial_Result_data[i], (R_Partial_Result_row[i], R_Partial_Result_col[i])),
-                                       (NR, NC))
+                                       (NR, NC), dtype=float)
 
     R_M = R_M[:Receive_length]
 
@@ -340,8 +340,8 @@ else:
     result = csr_matrix((NR, NC), dtype=float)
 
     for cur in range(NoM):
-        result += np.dot(csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA)),
-                         csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC)))
+        result += np.dot(csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA), dtype=float),
+                         csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC), dtype=float))
 
     result = result.tocoo()
 
