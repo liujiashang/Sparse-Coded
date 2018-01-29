@@ -168,7 +168,7 @@ if comm.rank == 0:
     Partial_Result = [None] * Receive_length
 
     for i in range(Receive_length):
-        tmp = coo_matrix((R_Partial_Result_data[i], (R_Partial_Result_row[i], R_Partial_Result_col[i])), (NR, NC))
+        tmp = coo_matrix((R_Partial_Result_data[i], (R_Partial_Result_row[i], R_Partial_Result_col[i])), (NR, NC), dtype=float)
         Partial_Result[i] = tmp.tocsr()
 
     R_M = R_M[:Receive_length]
@@ -340,11 +340,11 @@ else:
     result = csr_matrix((NR, NC), dtype=float)
 
     for cur in range(NoM):
-        tmp1 = coo_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA))
-        tmp2 = coo_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC))
+        tmp1 = coo_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA), dtype=float)
+        tmp2 = coo_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC), dtype=float)
         tmp1 = tmp1.tocsr()
         tmp2 = tmp2.tocsr()
-        result += np.dot(tmp1, tmp2)
+        result = result + np.dot(tmp1, tmp2)
 
     result = result.tocoo()
 
