@@ -337,10 +337,11 @@ else:
 
     start = time.time()
 
-    result = csr_matrix((NR, NC), dtype=float)
+    result = csr_matrix((NR, NC))
 
     for cur in range(NoM):
-        result += np.dot(csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA), dtype=float), csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC), dtype=float))
+        tmp = np.dot(csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA)), csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC)))
+        result = result + tmp
 
     result = result.tocoo()
 
@@ -363,5 +364,4 @@ else:
     tr.wait()
     tc.wait()
 
-    print("worker %d, %f, %f, %f, %d" % (comm.rank - 1, (finished - start), (time.time() - finished),
-                                         (time.time() - start), s[0]))
+    print("worker %d, %f, %f, %f, %d" % (comm.rank - 1, (finished - start), (time.time() - finished), (time.time() - start), s[0]))
