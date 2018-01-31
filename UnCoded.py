@@ -346,7 +346,7 @@ else:
     for cur in range(NoM):
         tmp1 = csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA))
         tmp2 = csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC))
-        result += tmp1.dot(tmp2)
+        result = result + tmp1.dot(tmp2)
 
     result = result.tocoo()
 

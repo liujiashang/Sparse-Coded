@@ -346,8 +346,8 @@ else:
     j = 1 + comm.rank*0.2
 
     for cur in range(NoM):
-        result_A += (j ** cur) * csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA))
-        result_B += ((j ** m) ** cur) * csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC))
+        result_A = result_A + (j ** cur) * csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA))
+        result_B = result_B + ((j ** m) ** cur) * csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC))
 
     result = coo_matrix(result_A.dot(result_B))
 
