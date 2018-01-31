@@ -7,9 +7,9 @@ import numpy as np
 import time
 
 # Matrix division
-m = 5
-n = 5
-N = 26
+m = 3
+n = 3
+N = 9
 NRA = 120000
 NCA = 120000
 NCB = 120000
