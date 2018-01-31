@@ -349,7 +349,7 @@ else:
         result_A += (j ** cur) * csr_matrix((R_A_data[cur], (R_A_row[cur], R_A_col[cur])), (NR, NCA))
         result_B += ((j ** m) ** cur) * csr_matrix((R_B_data[cur], (R_B_row[cur], R_B_col[cur])), (NCA, NC))
 
-    result = coo_matrix(np.dot(result_A, result_B))
+    result = coo_matrix(result_A.dot(result_B))
 
     finish_compute = time.time()
 
