@@ -10,9 +10,9 @@ import time
 m = 3
 n = 3
 N = 9
-NRA = 120000
-NCA = 120000
-NCB = 120000
+NRA = 12000
+NCA = 12000
+NCB = 12000
 
 NR = NRA // m
 NC = NCB // n
